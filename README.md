@@ -1,5 +1,5 @@
 # Report on Creating an Image Project Model and Computer Vision Game
-### This report describes how the Image Project Model is created and stored in the main branch of the GitHub repository server
+### This report describes how the Image Project Model is created and stored in the main branch of the GitHub repository server. Further, it describes how the Computer Vision Game is developed from this model.
 
 ## Milestone 1 
 - This Milestone creates the GitHub repository in GitHub server and copies the repository to local desktop folder using following command: 
@@ -224,15 +224,14 @@ To https://github.com/udslk/Computer_Vision.git
                input("Press any key to continue...")
             pass
       -  Below screenshot shows the output when the user wins the game:
-         >![image](images\user-wins.png)
+         >![image](https://github.com/udslk/Computer_Vision/blob/main/images/user-wins.PNG?raw=true)
       -  Below screenshot shows the output when the computer wins the game:
-         >![image](images\computer-wins.png)
+         >![image](https://github.com/udslk/Computer_Vision/blob/main/images/computer-wins.PNG?raw=true)
 
 
 
 
 ## Conclusion
-git
 - The milestone 2 shows how the Computer Vision System is created using the "Teachable-Machine" from "https://teachablemachine.withgoogle.com/"
 - This System creates two important files, one for the image model called keras_model.h5 and other one for labels called labels.txt. 
 - These two files are stored in GitHub repository
