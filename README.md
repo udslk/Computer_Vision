@@ -8,10 +8,9 @@
 ## Milestone 2
 - This milestone creates the Computer Vision System that detects whether the user is showing Rock, Scissors, Paper or Nothing 
 - This system creates an image project model with different four classes: Rock, Scissors, Paper and Nothing
--  It uses "Teachable-Machine" from "https://teachablemachine.withgoogle.com/" to create the Classes
--  Each class is trained with images of the user showing each option to the camera. 
+- It uses "Teachable-Machine" from "https://teachablemachine.withgoogle.com/" to create the Classes
+- Each class is trained with images of the user showing each option to the camera. 
 - The "Nothing" class represents the lack of option in the image
-
 - Downloaded the model from the "Tensorflow" tab in Teachable-Machine.
 - This model contained keras_model.h5 file and a label with file name labels.txt
 - The model and the label is pushed to GitHub repository:
@@ -36,7 +35,7 @@ To https://github.com/udslk/Computer_Vision.git
          ```
       -  Installed the python package manager pip:
          ```
-         (base) PS C:\Users\udslk\Desktop\AiCore_git\Computer_Vision> conda istall pip
+         (base) PS C:\Users\udslk\Desktop\AiCore_git\Computer_Vision> conda install pip
          ```
       -  Using python package manger pip installed the python libraries, pencv-python, tensorflow, and ipykernel:
          ```
@@ -92,10 +91,10 @@ To https://github.com/udslk/Computer_Vision.git
       -  play: This function calls above three functions and prints who is the winner of the game:
          ```python
          def play():
-               computor_choice =  get_computer_choice()
+               computer_choice =  get_computer_choice()
                user_choice = get_user_choice()
 
-               winner = get_winner(computor_choice, user_choice)
+               winner = get_winner(computer_choice, user_choice)
                if winner == 'User':
                   print('You win the game, CONGRATULATIONS')
                elif winner == 'Computer':
@@ -117,7 +116,7 @@ To https://github.com/udslk/Computer_Vision.git
 ## Milestone 5
 -  In this milestone created a new python file called camera_rps.py and implemented following to create the Computer Vision Game:
       - Class CVG: Created a class called CVG - Computer Vision Game. This class contains following:
-         - init funcion which initialise following variables: winner, user_wins, computer_wins and prediction_list that contain the options 'Rock', 'Paper', 'Scissors' and 'Nothing':
+         - init function which initialise following variables: winner, user_wins, computer_wins and prediction_list that contain the options 'Rock', 'Paper', 'Scissors' and 'Nothing':
             ```python
             def __init__(self):
                self.winner = ''
@@ -125,12 +124,12 @@ To https://github.com/udslk/Computer_Vision.git
                self.computer_wins = 0
                self.prediction_list = ['Rock', 'Paper', 'Scissors','Nothing']
             ```
-         - get_computer_choice funtion selects the one option from prediction list randomly
+         - get_computer_choice function selects the one option from prediction list randomly
             ```python
             def get_computer_choice(self):
                return random.choice(self.prediction_list)
             ```
-         - get_prediction funtion predicts the highest probability of trained model in the order, "Rock", "Paper", "Scissors", and "Nothing. Ex. if the first element of the list is 0.8, the second element is 0.1, the third element is 0.05, and the fourth element is 0.05, then, the model predicts that user showed "Rock" to the camera with a confidence of 0.8:
+         - get_prediction function predicts the highest probability of trained model in the order, "Rock", "Paper", "Scissors", and "Nothing. Ex. if the first element of the list is 0.8, the second element is 0.1, the third element is 0.05, and the fourth element is 0.05, then, the model predicts that user showed "Rock" to the camera with a confidence of 0.8:
             ```python
             def get_prediction(self, prediction):
                   nr = np.argmax(prediction)
@@ -191,17 +190,17 @@ To https://github.com/udslk/Computer_Vision.git
                      self.winner = 'No One'
                   return self.winner
             ```
-      - The main play() game creates the game object of CVG class and starts the game. It runs until either user or computer wins in three rounds:
+      - The main play_game() function creates the game object of CVG class and starts the game. It runs until either user or computer wins in three rounds:
          ```python
          def play_game(total_wins=3):
     
                game = CVG()
    
                while True:
-               computor_choice =  game.get_computer_choice()
+               computer_choice =  game.get_computer_choice()
                user_choice = game.get_user_choice()
-               winner = game.get_winner(computor_choice, user_choice)
-               print(f'Computer choice in this round is {computor_choice}')
+               winner = game.get_winner(computer_choice, user_choice)
+               print(f'Computer choice in this round is {computer_choice}')
                print(f'User choice in this round is {user_choice}')
                if winner == 'User':
                   if game.user_wins == total_wins:
@@ -220,7 +219,7 @@ To https://github.com/udslk/Computer_Vision.git
                      print('Computer wins round')
                      print(f'The score is {game.computer_wins} computer win(s) and {game.user_wins} user win(s)')
                else:
-                  print('NO one wins this roud')
+                  print('NO one wins this round')
                input("Press any key to continue...")
             pass
       -  Below screenshot shows the output when the user wins the game:
