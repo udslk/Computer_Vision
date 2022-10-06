@@ -222,6 +222,18 @@ To https://github.com/udslk/Computer_Vision.git
                   print('NO one wins this round')
                input("Press any key to continue...")
             pass
+
+      - In the main, the play_game() function is called inside the while loop to allow the user to play the game repeatedly until user wanted to stop the game:
+         ```python
+         if __name__ == '__main__':
+         '''
+         Game is repeated until user wanted to stop the game 
+         '''
+            while True:
+               play_game()
+                  ch = input('If you wish to play another game, enter \"y/Y\" for yes or any key to stop the game:')
+                  if ch.lower() != 'y':
+                     break
       -  Below screenshot shows the output when the user wins the game:
          >![image](https://github.com/udslk/Computer_Vision/blob/main/images/user-wins.PNG?raw=true)
       -  Below screenshot shows the output when the computer wins the game:
