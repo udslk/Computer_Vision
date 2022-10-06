@@ -9,6 +9,41 @@ data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
 class CVG:
 
+    '''
+    Computer Vision Game is defined as class CVG. It has following parameters, attributes and methods:
+    
+    Parameters:
+    ----------
+    winner: str
+        This stores the winner of the game, user , computer or no-one.
+    user_wins: int
+        This stores the number of times user wins the game
+    computer_wins: int
+        This stores the number of times computer wins the game
+    
+    Attributes:
+    ----------
+    prediction_list: list
+        A list of options that computer can choose randomly
+
+    Methods:
+    -------
+    __init__()
+        Initialises the above parameters and attribute.
+    
+    get_computer_choice()
+        Computer randomly selects the options from the list, Rock, Paper, Scissors and Nothing and returns it to the calling function.
+
+    get_prediction(prediction)
+        This function takes list variable prediction which contains the output of the image model and returns the index of the option that has highest probability.  
+    
+    get_user_choice()
+        This method calls the get_prediction function to predict the user's selection from the frames captured by computer.
+
+    get_winner(computer_choice, user_choice)
+        This method takes two input variables, computer_choice and user_choice, and decides who is the winner and returns the winner
+
+    '''
     def __init__(self):
         self.winner = ''
         self.user_wins = 0
@@ -24,7 +59,12 @@ class CVG:
         return  self.prediction_list[nr]
 
     def get_user_choice(self):
-     
+        '''
+        This method calls the get_prediction function to predict the user's selection from the frames captured by computer.
+        It uses start_time variable to stor the start time of the camera is on to capture the frames of the user and gives 5 sec to user to show the trained image on the camera.
+        In the while loop it checks the time_lapped parameter whether it took 5 sec. During this 5 sec it prints the count down value to let user know remaining time to show the trained image. 
+        After 5 sec it calls the get_prediction() function to return the most trained image by the user.
+        '''
         model = load_model('keras_model.h5')
         cap = cv2.VideoCapture(0)
         data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
@@ -60,7 +100,14 @@ class CVG:
         return self.get_prediction(prediction)
            
     def get_winner(self, computer_choice, user_choice):
-        
+        '''
+        This method takes two input variables, computer_choice and user_choice, and decides who is the winner and returns the winner:
+        It applies following rules to choose the winner:
+            -  Rock beats Scissors
+            -  Paper beats Rock
+            -  Scissors beats Paper
+        If user wins it increments the variable user_wins by one and likewise does the same for variable computer_wins when computer wins in a round.
+        '''
         if [computer_choice,user_choice] in [['Rock','Scissors'],['Paper','Rock'],['Scissors','Paper']]:
             self.winner = 'Computer'
             self.computer_wins +=1
@@ -72,14 +119,21 @@ class CVG:
         return self.winner
         
 def play_game(total_wins=3):
-    
+    '''
+    The main play_game() creates the game object of CVG class and starts the game. It runs until either user or computer wins in three rounds.
+    For each round, it prints following:
+        - if user wins it prints - "User wins the game, CONGRATULATIONS", along with the score 
+        - if computer wins it prints - "Computer win the game", along with the score
+        - if there is no results, it prints - "NO one wins this round"
+    After three wins of either from use or computer it prints winner with the final score.
+    '''
     game = CVG()
    
     while True:
-        computor_choice =  game.get_computer_choice()
+        computer_choice =  game.get_computer_choice()
         user_choice = game.get_user_choice()
-        winner = game.get_winner(computor_choice, user_choice)
-        print(f'Computer choice in this round is {computor_choice}')
+        winner = game.get_winner(computer_choice, user_choice)
+        print(f'Computer choice in this round is {computer_choice}')
         print(f'User choice in this round is {user_choice}')
         if winner == 'User':
             if game.user_wins == total_wins:
@@ -98,7 +152,7 @@ def play_game(total_wins=3):
                 print('Computer wins round')
                 print(f'The score is {game.computer_wins} computer win(s) and {game.user_wins} user win(s)')
         else:
-            print('NO one wins this roud')
+            print('NO one wins this round')
         input("Press any key to continue...")
     pass
 
