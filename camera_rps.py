@@ -157,4 +157,11 @@ def play_game(total_wins=3):
     pass
 
 if __name__ == '__main__':
-    play_game()
+    '''
+    Game is repeated until user wanted to stop the game 
+    '''
+    while True:
+        play_game()
+        ch = input('If you wish to play another game, enter \"y/Y\" for yes or any key to stop the game:')
+        if ch.lower() != 'y':
+            break
