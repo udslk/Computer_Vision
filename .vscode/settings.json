@@ -1,0 +1,19 @@
+{
+    "cSpell.ignoreWords": [
+        "argmax",
+        "astype",
+        "conda",
+        "dtype",
+        "elif",
+        "imshow",
+        "ipykernel",
+        "keras",
+        "ndarray",
+        "pencv",
+        "udslk"
+    ],
+    "cSpell.words": [
+        "initialise",
+        "Initialises"
+    ]
+}
